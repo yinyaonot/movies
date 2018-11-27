@@ -1,0 +1,234 @@
+{% extends 'base_movies.html' %}
+{% load staticfiles %}
+{% block title %}
+    详情页面
+{% endblock %}
+{% block movies_style %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/detailcss.css' %}">
+    <style type="text/css">
+        .brou {
+            background: #bcbcbc;
+            margin-top: -20px;
+        }
+
+        .brou a {
+            font-size: 20px;
+            padding-left: 20px;
+            text-decoration: none;
+        }
+
+        .brou a:hover {
+            color: red;
+        }
+
+        .hh2 {
+            background: white;
+            width: 1200px;
+            margin-left: 80px;
+            padding: 30px 0px;
+            margin-top: 20px;
+
+        }
+
+        .hod {
+            background: #e5e5e5;
+            padding: 10px;
+
+        }
+
+        .div2 {
+            width: 1200px;
+            background: white;
+            margin: 20px 80px;
+            padding-top: 20px;
+        }
+
+        #p1 {
+            margin-left: 45px;
+            font-size: 25px;
+            font-weight: bold;
+
+        }
+
+        #img1 {
+            width: 130px;
+        }
+
+        #p2 {
+            font-size: 16px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-left: 45px;
+
+        }
+        li {
+            float: left;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .right {
+            margin-top: -30px;
+            padding: 2px 70px;
+        }
+
+        .hh3 {
+            background: white;
+            width: 1200px;
+            margin: 20px 80px;
+        }
+
+        #p3 {
+            font-size: 18px;
+            margin-left: 60px;
+        }
+
+        #p4 {
+            display: block;
+            font-size: 18px;
+            margin-left: 800px;
+            margin-top: -35px;
+        }
+
+        #a2 {
+            display: block;
+            margin-top: 50px;
+            margin-left: 40px;
+        }
+
+        ul {
+            margin-left: 800px;
+            margin-top: -33px;
+        }
+
+        #sp1 {
+            display: block;
+            margin-top: 80px;
+            font-size: 16px;
+            margin-left: 20px;
+        }
+
+        #p5 {
+            display: block;
+            margin-top: 10px;
+            font-size: 16px;
+            margin-left: 20px;
+        }
+
+        .div3 {
+            background: white;
+            width: 1200px;
+            margin-left: 80px;
+        }
+
+        #p6 {
+            display: block;
+            margin-top: -8px;
+            font-size: 16px;
+            margin-left: 250px;
+            padding-top: 30px;
+        }
+
+        #sp2 {
+            display: block;
+            font-size: 16px;
+            margin-left: 380px;
+        }
+
+        #p7 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 800px;
+        }
+    </style>
+
+{% endblock %}
+
+
+{% block movies_content %}
+    <div class="brou">
+        <div class="hh2">
+            <div class="hod">
+                <span style="font-size: 20px">当前位置:</span>
+                <a href="{% url 'movies' %}">首页</a>
+                <span>>></span>
+                <a href="{% url 'sort' film.cata_log_name %}">{{ film.cata_log_name }}</a>
+                <span>>></span>
+                <a href="{% url 'sort' film.sub_class_name %}">{{ film.sub_class_name }}</a>
+                    <span>>></span>
+                    <a href="">{{ film.name }}</a>
+
+            </div>
+            <div class="all clear">
+                <div class="left">
+                    <div class="img">
+                        <img src="{% static film.image %}">
+                    </div>
+                    <div class="button">
+                        <button style="border: none">立即播放</button>
+                    </div>
+                </div>
+
+                <div class="right">
+                    <h2>{{ film.name }}<span>&nbsp;</span>{{ film.cata_log_name }}</h2>
+                    <p>
+                        <span>上映年代：</span>{{ film.on_decade_id }}<span>&nbsp;&nbsp;&nbsp;&nbsp;状态：</span>{{ film.status }}
+                    </p>
+                    <p><span>类型：</span>{{ film.sub_class_name }}</p>
+                    <p><span>主演：</span>{{ film.actor }}</p>
+                    <p><span>地区：</span>{{ film.loc_name }}</p>
+                    <p><span>更新日期：</span>{{ film.update_time }}</p>
+                    <p id="p7"><span>剧情:</span>{{ film.plot }}</p>
+                    <p><span>影片评价</span></p>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </div>
+            </div>
+        </div>
+        <div class="div2">
+            <p id="p1">猜你喜欢</p>
+            <a href="#" id="a1">
+                <img src="{% static film.image %}" alt="" id="img1">
+            </a>
+            <br>
+            <a id="p2">{{ film.name }}</a>
+        </div>
+        <div class="hh3">
+            <img src="" alt="" id="img2">
+            <p id="p3">下载地址</p>
+            <p id="p4">此处支持迅雷,QQ旋风下载,同时支持在线播放</p>
+            <a href="{{ res.link }}" id="a2">{{ film.name }}.HD1280高清国语中英双字.mp4</a>
+            <ul>
+                <li><a href="#" class="a3">迅雷</a></li>
+                <li><a href="#" class="a3">看看</a></li>
+                <li><a href="#" class="a3">离线</a></li>
+                <li><a href="#" class="a3">旋风</a></li>
+
+            </ul>
+            <span id="sp1">剧情介绍</span>
+            <p id="p5">{{ film.plot }}</p>
+
+        </div>
+        <div class="div3">
+            <p id="p6">免责声明:如果侵犯了你的权益，请发邮件至：chl14@163.com，我们会及时删除侵权内容，谢谢合作！</p>
+            <span id="sp2">Copyright © 2018 蜀ICP备16028726号 2018 All Rights Reserved.</span>
+            <img src="" alt="" id="img3">
+        </div>
+    </div>
+
+{% endblock %}
+
+
+

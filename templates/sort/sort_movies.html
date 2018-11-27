@@ -1,0 +1,314 @@
+
+
+{% extends 'base_movies.html' %}
+{% load staticfiles %}
+{% block title %}
+    分类页面
+{% endblock %}
+{% block movies_style %}
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <style type="text/css">
+
+        .head > a {
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .head > a:hover {
+            color: red;
+        }
+
+        .film > li {
+            margin: 0px;
+            padding: 20px;
+            width: 20%;
+        }
+
+        .col-sm-2 {
+            height: 100%;
+            padding-top: 5px;
+
+        }
+
+        .col-sm-2 > .left_box {
+            text-align: center;
+            background: #343a40;
+            width: auto;
+
+        }
+
+        .left_box > li {
+            padding: 10px;
+        }
+
+        .left_box_ul > li > span > a {
+            color: white;
+            font-family: 华文宋体;
+            font-size: 15px;
+        }
+
+        .left_box_ul > li {
+            padding-top: 20px;
+        }
+
+        .left_box_ul > li:hover {
+            background: #b4b4b4;
+        }
+
+        .left_box > li {
+            height: 40px;
+            width: auto;
+        }
+
+        .left_box > span {
+            font-family: 华文宋体;
+        }
+
+        .left_box > a {
+            color: white;
+            font-size: 18px;
+            padding: 5px;
+        }
+
+        .marquee {
+            width: 1000px;
+            height: 30px;
+        }
+
+        .fenlei > {
+            float: left;
+            padding: 5px;
+
+        }
+
+        .fenlei > li:hover {
+            background: #343a40;
+
+        }
+
+        .fenlei > li > a:hover {
+            background: white;
+        }
+
+        .film {
+
+        }
+
+        .note-left {
+
+        }
+
+        .info {
+            margin-top: 0;
+        }
+
+        .info > p {
+            margin-top: -5px;
+            padding-left: 3px;
+        }
+
+        .cation {
+            padding-bottom: 10px;
+            border: 1px #e4e4e4 solid;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            float: left;
+            padding: 5px;
+            max-width: 156px;
+        }
+
+        .note-conunt > img {
+            border: 1px #e4e4e4 solid;
+            padding: 5px;
+            width: 100%;
+            height: 136px;
+        }
+
+        .info > p > button {
+            width: 50px;
+            line-height: 21px;
+            height: 21px;
+        }
+
+        .film_content {
+            border: 1px #e4e4e4 solid;
+        }
+
+        .du1, .du2 {
+            border: none;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px
+        }
+
+        .du1 > a, .du2 > a {
+            color: white;
+        }
+
+        h4 {
+            overflow: hidden; /*内容超出后隐藏*/
+
+            text-overflow: ellipsis; /* 超出内容显示为省略号*/
+
+            white-space: nowrap; /*文本不进行换行*/
+        }
+
+        .info > p {
+            overflow: hidden; /*内容超出后隐藏*/
+
+            text-overflow: ellipsis; /* 超出内容显示为省略号*/
+
+            white-space: nowrap; /*文本不进行换行*/
+        }
+
+        .body {
+            margin-left: 8%;
+        }
+
+        .fenlei_ul > ul > li {
+            float: right;
+            padding-left: 10px;
+            padding-top: 5px;
+        }
+
+        .left > li {
+            float: left;
+            padding: 5px;
+        }
+
+        .left > div > li {
+            float: left;
+            padding: 5px;
+        }
+
+        .left > li > a {
+            color: black;
+        }
+
+        .left > li > a:hover {
+            background: black;
+            color: white;
+        }
+
+        .left > li > span {
+            font-size: 18px;
+        }
+
+        .glyphicon {
+            color: #fcca65;
+        }
+
+    </style>
+{% endblock %}
+
+{% block movies_content %}
+
+    <div class="body clear col-sm-12">
+        <!--飘动条-->
+        <div class="marquee">
+            <marquee onmouseover='this.stop()' onmouseout='this.start()'><a href="">注册</a>|<a href="">登录</a>后观看高清无码视频
+            </marquee>
+        </div>
+        <!--左边分类选项-->
+        <div class="col-sm-2">
+            <div class="left_box">
+                <a href="{% url 'sortall' %}">全部分类</a>
+                <ul class="left_box_ul">
+                    <li><span><a href="{% url 'sort' '短视频' %}">短视频</a></span></li>
+                    <li><span><a href="{% url 'sort' '你猜' %}">你猜</a></span></li>
+                    <li><span><a href="{% url 'sort' '电影' %}">电影</a></span></li>
+                    <li><span><a href="{% url 'sort' '电视剧' %}">电视剧</a></span></li>
+                    <li><span><a href="{% url 'sort' '动漫' %}">动漫</a></span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-7 clear">
+            <div class="cation clear">
+                <ul class="left clear">
+                    <li><span><b>分类</b></span></li>
+                    <li><a href="{% url 'sort' '短视频' %}">短视频</a></li>
+                    <li><a href="{% url 'sort' '你猜' %}">你猜</a></li>
+                    <li><a href="{% url 'sort' '电影' %}">电影</a></li>
+                    <li><a href="{% url 'sort' '电视剧' %}">电视剧</a></li>
+                    <li><a href="{% url 'sort' '动漫' %}">动漫</a></li>
+
+                </ul>
+                <ul class="left clear">
+                    <li><span><b>子类</b></span></li>
+
+                    {% for type in type_list %}
+                        <li><a href="{% url 'sort' type.name %}">{{ type.name }}</a></li>
+                    {% endfor %}
+
+                </ul>
+                <ul class="left clear">
+                    <li><span><b>地区</b></span></li>
+
+                    {% for locname in locname_list %}
+                        <li><a href="{% url 'sort' locname.name %}">{{ locname.name }}</a></li>
+                    {% endfor %}
+
+                </ul>
+
+
+                <ul class="left clear">
+                    <li><span><b>时期</b></span></li>
+                    {% for year in year_list %}
+                        <li><a href="{% url 'sort' year.name %}">{{ year.name }}</a></li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+            <div class="film_content clear">
+                <ul class="film clear">
+                    {% for film in films %}
+                        <li class="content clear">
+                            <div class="note-left">
+                                <a href="{% url 'detail' film.id %}">
+                                    <div class="note-conunt">
+                                        <img src="{% static film.image %}" alt="{{ film.name }}">
+                                    </div>
+                                </a>
+                                <div class="info">
+                                    <p><h4><a href="{% url 'detail' film.id %}" title="{{ film.name }}"
+                                              target="_blank">{{ film.name }}</a></h4></p>
+                                    <p>主演:{{ film.actor }}</p>
+                                    <p>
+                                        状态:<i>{{ film.status }}</i>
+                                        &nbsp;
+                                        地区:<i>{{ film.log_name }}</i>
+                                    </p>
+                                    <p>
+                                        类型:<i>{{ film.sub_class_name }}</i>
+                                        更新<i>:{{ movie.update_time|slice:"5:10" }}</i>
+                                    </p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <p></p>
+                                    <p>
+                                        <button class="du1" style="background-color:#f9d019"><a href="#">观看</a></button>
+                                        <button class="du2" style="background: #46b8da">
+                                            <a href="#">下载</a></button>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </li>
+                    {% endfor %}
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,152 @@
+{% extends 'base_movies.html' %}
+{% load staticfiles %}
+{{% block title %}
+    电影首页
+{% endblock %}
+{% block movies_style %}
+    <script type="text/javascript" src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.hide_img').hide();
+            $('.paihangbang>ul>li').mouseover(function () {
+                $(this).find('.hide_img').show()
+            });
+            $('.paihangbang>ul>li').mouseout(function () {
+                $(this).find('.hide_img').hide()
+            })
+        })
+    </script>
+{% endblock %}
+
+{% block movies_content %}
+        <div class="content">
+        <div class="word">
+            <marquee onmouseover='this.stop()' onmouseout='this.start()'><a href="">注册</a>|<a href="">登录</a>后观看高清无码视频
+            </marquee>
+        </div>
+
+        <div class="daohang">
+            <span class="span01">最新电影推荐</span>
+            <a class="a1" href="{% url 'sort' '电影' %}">更多</a>
+            <span class="span02">更新电影排行榜</span>
+        </div>
+        <div class="movie_list clear">
+            <div class="movies clear">
+                <ul>
+                    {% for movie in movies %}
+                        <li>
+                            <a href="{% url 'detail' movie.id %}"><img src="{% static movie.image %}"></a>
+                            <div class="jianjie">
+                                <p class="cont"><a href="">{{ movie.name }}</a></p>
+                                <p><span>{{ movie.type_name }}-{{ movie.on_decade_id }}</span></p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+            <div class="list">
+                <div class="paihangbang">
+                    <ul>
+                        {% for movie in movies_list %}
+                            <li>
+                                <div class="num01"><span>{{ forloop.counter }}</span></div>
+                                <a href="{% url 'detail' movie.id %}">{{ movie.name }}</a>
+                                <span class="span03">{{ movie.update_time|slice:"5:10" }}</span>
+                                <div class="hide_img">
+                                    <img src="{% static movie.image %}">
+                                </div>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="daohang">
+            <span class="span01">最新电视推荐</span>
+            <a class="a1" href="{% url 'sort' '电视剧' %}">更多</a>
+            <span class="span02">更新电视排行榜</span>
+        </div>
+        <div class="movie_list clear">
+            <div class="movies clear">
+                <ul>
+                    {% for tv in tvs %}
+                        <li>
+                            <a href="{% url 'detail' tv.id %}"><img src="{% static tv.image %}"></a>
+                            <div class="jianjie">
+                                <p class="cont"><a href="">{{ tv.name }}</a></p>
+                                <p><span>{{ tv.type_name }}-{{ tv.on_decade_id }}</span></p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+            <div class="list">
+                <div class="paihangbang">
+                    <ul>
+                        {% for tv in tvs_list %}
+                            <li>
+                                <div class="num01"><span>{{ forloop.counter }}</span></div>
+                                <a href="{% url 'detail' tv.id %}">{{ tv.name }}</a>
+                                <span class="span03">{{ tv.update_time|slice:"5:10" }}</span>
+                                <div class="hide_img">
+                                    <img src="{% static tv.image %}">
+                                </div>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="daohang">
+            <span class="span01">最新动漫推荐</span>
+            <a class="a1" href="{% url 'sort' '动漫' %}">更多</a>
+            <span class="span02">更新动漫排行榜</span>
+        </div>
+        <div class="movie_list clear">
+            <div class="movies clear">
+                <ul>
+                    {% for cartoon in cartoons %}
+                        <li>
+                            <a href="{% url 'detail' cartoon.id %}"><img src="{% static cartoon.image %}"></a>
+                            <div class="jianjie">
+                                <p class="cont"><a href="">{{ cartoon.name }}</a></p>
+                                <p><span>{{ cartoon.type_name }}-{{ cartoon.on_decade_id }}</span></p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+            <div class="list">
+                <div class="paihangbang">
+                    <ul>
+                        {% for cartoon in cartoons_list %}
+                            <li>
+                                <div class="num01"><span>{{ forloop.counter }}</span></div>
+                                <a href="{% url 'detail' cartoon.id %}">{{ cartoon.name }}</a>
+                                <span class="span03">{{ cartoon.update_time|slice:"5:10" }}</span>
+                                <div class="hide_img">
+                                    <img src="{% static cartoon.image %}">
+                                </div>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+{% endblock %}
+
+
+

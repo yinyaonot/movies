@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}
+
+    {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/mycss.css' %}" type="text/css">
+    {% block movies_style %}
+
+    {% endblock %}
+</head>
+<body>
+<div>
+    <div class="head">
+        <span>欢迎来到电影天堂</span>
+        <a href="">收藏网站</a>
+        {% if request.user.is_authenticated %}
+            <span class="register">
+                欢迎您：{{ user.username }}&nbsp;&nbsp
+                <a href="{% url 'logout' %}">退出登录</a>
+            </span>
+        {% else %}
+            <a href="{% url 'login' %}">登录</a>
+            <a href="{% url 'register' %}">注册</a>
+        {% endif %}
+        <span>|</span>
+        <a href="{% url 'movies' %}">首页</a>
+        <a href="{% url 'sort' '电影' %}">短视频</a>
+        <a href="{% url 'sort' '电视剧' %}">电影</a>
+        <a href="{% url 'sort' '动漫' %}">电视剧</a>
+    </div>
+    {% block movies_content %}
+    {% endblock %}
+</div>
+</body>
+</html>
